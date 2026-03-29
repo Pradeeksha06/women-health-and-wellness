@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HerHealth+ | Women's Wellness Platform</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ══ NAVBAR ══ -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="logo">Her<span>Health</span>+</div>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">&#9776;</button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home" class="nav-link active">Home</a></li>
+        <li><a href="#dashboard" class="nav-link">Dashboard</a></li>
+        <li><a href="#features" class="nav-link">Features</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <button class="dark-toggle" id="darkToggle" aria-label="Toggle dark mode">🌙</button>
+    </div>
+  </nav>
+
+  <!-- ══ HOME / HERO ══ -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <span class="badge">Your Wellness Journey Starts Here</span>
+      <h1>Empowering Women Through <span>Health &amp; Wellness</span></h1>
+      <p>Track your cycle, mood, hydration, and fitness — all in one safe, supportive space.</p>
+      <div class="hero-btns">
+        <a href="#dashboard" class="btn btn-primary">Open Dashboard</a>
+        <a href="#features" class="btn btn-outline">Explore Tools</a>
+      </div>
+    </div>
+    <div class="hero-visual" aria-hidden="true" style="position:relative;z-index:2;">
+      <div class="blob">🌸</div>
+    </div>
+    <div class="floating-shape" aria-hidden="true"></div>
+  </section>
+
+  <!-- ══ FEATURE CARDS ══ -->
+  <section id="features" class="features-section">
+    <div class="section-header">
+      <h2>Health Tools</h2>
+      <p>Everything you need to take charge of your well-being</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card" data-target="cycle-tracker">
+        <div class="card-icon">🌙</div>
+        <h3>Cycle Tracker</h3>
+        <p>Predict your next period and fertile window with ease.</p>
+        <button class="btn btn-sm" onclick="scrollToTool('cycle-tracker')">Open Tool</button>
+      </div>
+      <div class="feature-card" data-target="mood-tracker">
+        <div class="card-icon">😊</div>
+        <h3>Mood Tracker</h3>
+        <p>Log your daily mood and review your emotional patterns.</p>
+        <button class="btn btn-sm" onclick="scrollToTool('mood-tracker')">Open Tool</button>
+      </div>
+      <div class="feature-card" data-target="symptom-checker">
+        <div class="card-icon">🩺</div>
+        <h3>Symptom Checker</h3>
+        <p>Select symptoms and get educational health insights.</p>
+        <button class="btn btn-sm" onclick="scrollToTool('symptom-checker')">Open Tool</button>
+      </div>
+      <div class="feature-card" data-target="water-tracker">
+        <div class="card-icon">💧</div>
+        <h3>Water Tracker</h3>
+        <p>Stay hydrated by tracking your daily water intake.</p>
+        <button class="btn btn-sm" onclick="scrollToTool('water-tracker')">Open Tool</button>
+      </div>
+      <div class="feature-card" data-target="fitness-tracker">
+        <div class="card-icon">🧘</div>
+        <h3>Fitness Tracker</h3>
+        <p>Log workouts and track your daily activity progress.</p>
+        <button class="btn btn-sm" onclick="scrollToTool('fitness-tracker')">Open Tool</button>
+      </div>
+      <div class="feature-card" data-target="chatbot">
+        <div class="card-icon">💬</div>
+        <h3>Wellness Chat</h3>
+        <p>Ask our wellness assistant for tips and guidance.</p>
+        <button class="btn btn-sm" onclick="scrollToTool('chatbot')">Open Chat</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ DASHBOARD ══ -->
+  <section id="dashboard" class="dashboard-section">
+    <div class="section-header">
+      <h2>Your Dashboard</h2>
+      <p>All your health tools in one place</p>
+    </div>
+
+    <!-- Cycle Tracker -->
+    <div class="tool-card" id="cycle-tracker">
+      <div class="tool-header"><span class="tool-icon">🌙</span><h3>Menstrual Cycle Tracker</h3></div>
+      <div class="tool-body">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="lastPeriod">Last Period Date</label>
+            <input type="date" id="lastPeriod" />
+          </div>
+          <div class="form-group">
+            <label for="cycleLength">Cycle Length (days)</label>
+            <input type="number" id="cycleLength" value="28" min="21" max="45" />
+          </div>
+        </div>
+        <button class="btn btn-primary" onclick="calculateCycle()">Calculate</button>
+        <div class="result-box" id="cycleResult" hidden></div>
+      </div>
+    </div>
+
+    <!-- Mood Tracker -->
+    <div class="tool-card" id="mood-tracker">
+      <div class="tool-header"><span class="tool-icon">😊</span><h3>Mood Tracker</h3></div>
+      <div class="tool-body">
+        <p class="tool-label">How are you feeling today?</p>
+        <div class="mood-grid">
+          <button class="mood-btn" data-mood="😄 Happy"     onclick="logMood('😄 Happy')">😄<span>Happy</span></button>
+          <button class="mood-btn" data-mood="😌 Calm"      onclick="logMood('😌 Calm')">😌<span>Calm</span></button>
+          <button class="mood-btn" data-mood="😔 Sad"       onclick="logMood('😔 Sad')">😔<span>Sad</span></button>
+          <button class="mood-btn" data-mood="😤 Stressed"  onclick="logMood('😤 Stressed')">😤<span>Stressed</span></button>
+          <button class="mood-btn" data-mood="😴 Tired"     onclick="logMood('😴 Tired')">😴<span>Tired</span></button>
+          <button class="mood-btn" data-mood="🤒 Unwell"    onclick="logMood('🤒 Unwell')">🤒<span>Unwell</span></button>
+        </div>
+        <div class="mood-log" id="moodLog"></div>
+      </div>
+    </div>
+
+    <!-- Symptom Checker -->
+    <div class="tool-card" id="symptom-checker">
+      <div class="tool-header"><span class="tool-icon">🩺</span><h3>Symptom Checker</h3></div>
+      <div class="tool-body">
+        <p class="tool-label">Select your symptoms:</p>
+        <div class="symptom-grid" id="symptomGrid">
+          <label class="symptom-item"><input type="checkbox" value="irregular_periods" /> Irregular Periods</label>
+          <label class="symptom-item"><input type="checkbox" value="heavy_bleeding" /> Heavy Bleeding</label>
+          <label class="symptom-item"><input type="checkbox" value="fatigue" /> Fatigue</label>
+          <label class="symptom-item"><input type="checkbox" value="acne" /> Acne</label>
+          <label class="symptom-item"><input type="checkbox" value="hair_loss" /> Hair Loss</label>
+          <label class="symptom-item"><input type="checkbox" value="weight_gain" /> Weight Gain</label>
+          <label class="symptom-item"><input type="checkbox" value="mood_swings" /> Mood Swings</label>
+          <label class="symptom-item"><input type="checkbox" value="cramps" /> Severe Cramps</label>
+          <label class="symptom-item"><input type="checkbox" value="bloating" /> Bloating</label>
+          <label class="symptom-item"><input type="checkbox" value="headaches" /> Headaches</label>
+        </div>
+        <button class="btn btn-primary" onclick="checkSymptoms()">Check Symptoms</button>
+        <div class="result-box" id="symptomResult" hidden></div>
+        <p class="disclaimer">⚠️ For educational purposes only. Always consult a healthcare professional.</p>
+      </div>
+    </div>
+
+    <!-- Water Tracker -->
+    <div class="tool-card" id="water-tracker">
+      <div class="tool-header"><span class="tool-icon">💧</span><h3>Water Intake Tracker</h3></div>
+      <div class="tool-body">
+        <div class="water-display">
+          <span id="waterCount">0</span><span class="water-unit">/ 8 glasses</span>
+        </div>
+        <div class="progress-bar-wrap">
+          <div class="progress-bar" id="waterBar" style="width:0%"></div>
+        </div>
+        <div class="water-btns">
+          <button class="btn btn-primary" onclick="addWater()">+ Add Glass</button>
+          <button class="btn btn-outline" onclick="resetWater()">Reset</button>
+        </div>
+        <div class="water-glasses" id="waterGlasses"></div>
+      </div>
+    </div>
+
+    <!-- Fitness Tracker -->
+    <div class="tool-card" id="fitness-tracker">
+      <div class="tool-header"><span class="tool-icon">🧘</span><h3>Fitness Tracker</h3></div>
+      <div class="tool-body">
+        <div class="fitness-progress-wrap">
+          <span id="fitnessCount">0</span><span class="fitness-label"> / 5 exercises completed</span>
+          <div class="progress-bar-wrap">
+            <div class="progress-bar progress-green" id="fitnessBar" style="width:0%"></div>
+          </div>
+        </div>
+        <ul class="exercise-list" id="exerciseList"></ul>
+      </div>
+    </div>
+
+    <!-- Chatbot -->
+    <div class="tool-card" id="chatbot">
+      <div class="tool-header"><span class="tool-icon">💬</span><h3>Wellness Assistant</h3></div>
+      <div class="tool-body">
+        <div class="chat-window" id="chatWindow">
+          <div class="chat-msg bot">👋 Hi! I'm your wellness assistant. Ask me anything about health, hydration, sleep, or stress.</div>
+        </div>
+        <div class="chat-input-row">
+          <input type="text" id="chatInput" placeholder="Type a message..." onkeydown="if(event.key==='Enter') sendChat()" />
+          <button class="btn btn-primary" onclick="sendChat()">Send</button>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ══ CONTACT ══ -->
+  <section id="contact" class="contact-section">
+    <div class="section-header">
+      <h2>Get in Touch</h2>
+      <p>We'd love to hear from you</p>
+    </div>
+    <form class="contact-form" id="contactForm" novalidate>
+      <div class="form-group">
+        <label for="cName">Full Name</label>
+        <input type="text" id="cName" placeholder="Your name" />
+        <span class="field-error" id="cNameErr"></span>
+      </div>
+      <div class="form-group">
+        <label for="cEmail">Email Address</label>
+        <input type="email" id="cEmail" placeholder="you@example.com" />
+        <span class="field-error" id="cEmailErr"></span>
+      </div>
+      <div class="form-group">
+        <label for="cMsg">Message</label>
+        <textarea id="cMsg" rows="5" placeholder="How can we help?"></textarea>
+        <span class="field-error" id="cMsgErr"></span>
+      </div>
+      <button type="submit" class="btn btn-primary">Send Message</button>
+      <div class="form-feedback" id="formFeedback" hidden></div>
+    </form>
+  </section>
+
+  <!-- ══ FOOTER ══ -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="logo">Her<span>Health</span>+</div>
+      <p>&copy; 2026 HerHealth+. All rights reserved.</p>
+      <div class="social-links">
+        <a href="#" aria-label="Instagram">📸</a>
+        <a href="#" aria-label="Twitter">🐦</a>
+        <a href="#" aria-label="Facebook">📘</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
